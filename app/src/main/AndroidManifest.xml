@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BBC_News">
-        <activity android:name=".view.activities.MainActivity">
+        <activity
+            android:name=".view.activities.ui.activities.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.BBC_News.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
