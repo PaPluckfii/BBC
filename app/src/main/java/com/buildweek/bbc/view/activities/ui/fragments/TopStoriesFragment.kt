@@ -1,44 +1,41 @@
 package com.buildweek.bbc.view.activities.ui.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
+import com.buildweek.bbc.view.activities.ui.recyclerviews.LocalServerRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
-import kotlinx.android.synthetic.main.fragment_africa.view.*
-import kotlin.time.microseconds
 
-
-class AfricaFragment :Fragment(){
+class TopStoriesFragment : Fragment() {
 
     lateinit var viewModel : MainViewModel
-    lateinit var adapter : InshortsRecyclerAdapter
+    lateinit var adapter : LocalServerRecyclerAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_africa, container, false)
-
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.callApi("africa")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it.data) }!!
+        viewModel.callLocalApi()
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1,it) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
         })
 
-        return root
+        return inflater.inflate(R.layout.fragment_top_stories, container, false)
     }
+    companion object {
+        fun newInstance() = TopStoriesFragment()
+    }
+
 }
