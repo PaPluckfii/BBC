@@ -8,11 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.buildweek.bbc.R
+import com.buildweek.bbc.view.activities.ui.fragments.AfricaFragment
 import com.buildweek.bbc.view.activities.ui.model.Data
-import com.buildweek.bbc.view.activities.ui.model.InShortsNews
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_inshots_layout.view.*
-import retrofit2.Callback
 
 class InshortsRecyclerAdapter(val context: Context, val articles: List<Data>) :
         RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>() {

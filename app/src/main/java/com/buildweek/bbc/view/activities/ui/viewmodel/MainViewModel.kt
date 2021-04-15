@@ -7,22 +7,16 @@ import androidx.lifecycle.ViewModel
 import com.buildweek.bbc.view.activities.ui.model.InShortsNews
 import com.buildweek.bbc.view.activities.ui.repository.MainRepository
 
-class MainViewModel : ViewModel(){
+class MainViewModel() : ViewModel(){
 
-//    private val _news : MutableLiveData<String> = MutableLiveData()
-//
-//    val news : LiveData<InShortsNews> = Transformations
-//            .switchMap(_news){
-//                MainRepository.getUser(it)
-//            }
-//    fun setCategory(category: String){
-//        val update = category
-//        if (_news.value == update){
-//            return
-//        }
-//        _news.value = update
-//    }
-//    fun cancelJobs(){
-//        MainRepository.cancelJob()
-//    }
+    val repository = MainRepository
+
+    fun getInshotsData(): MutableLiveData<InShortsNews>{
+        return repository.getInshotsNewsData()
+    }
+
+    fun callApi(category : String){
+        repository.inshortsApiCall(category)
+    }
+
 }
