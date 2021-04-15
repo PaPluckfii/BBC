@@ -29,13 +29,12 @@ class AfricaFragment :Fragment(){
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.callApi("africa")
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
+
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it.data) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
         })
 
         return root
-
-
     }
 }
