@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.buildweek.bbc.view.activities.ui.model.InShortsNews
+import com.buildweek.bbc.view.activities.ui.model.LocalServerNews
 import com.buildweek.bbc.view.activities.ui.repository.MainRepository
 
 class MainViewModel() : ViewModel(){
@@ -17,6 +18,14 @@ class MainViewModel() : ViewModel(){
 
     fun callApi(category : String){
         repository.inshortsApiCall(category)
+    }
+
+    fun callLocalApi(){
+        repository.callLocalApi()
+    }
+
+    fun getLocalServerNews(): MutableLiveData<LocalServerNews>{
+        return repository.getLocalServerNews()
     }
 
 }
