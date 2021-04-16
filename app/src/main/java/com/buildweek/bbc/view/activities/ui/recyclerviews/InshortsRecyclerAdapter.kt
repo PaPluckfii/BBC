@@ -8,20 +8,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.buildweek.bbc.R
-import com.buildweek.bbc.view.activities.ui.fragments.AfricaFragment
-import com.buildweek.bbc.view.activities.ui.model.Data
+import com.buildweek.bbc.view.activities.ui.model.LocalServerNews
 import com.bumptech.glide.Glide
 
-class InshortsRecyclerAdapter(val context: Context, val articles: List<Data>) :
-        RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>() {
+class InshortsRecyclerAdapter(val context: Context, val articles: LocalServerNews) :
+    RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>() {
 
-    class InshortsRecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class InshortsRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var newsImage = itemView.findViewById<ImageView>(R.id.inShotsNewsImage)
         var newsHeadline = itemView.findViewById<TextView>(R.id.inShotsNewsHeadline)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InshortsRecyclerViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_inshots_layout,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_inshots_layout, parent, false)
         return InshortsRecyclerViewHolder(view)
     }
 
@@ -31,8 +30,8 @@ class InshortsRecyclerAdapter(val context: Context, val articles: List<Data>) :
 
     override fun onBindViewHolder(holder: InshortsRecyclerViewHolder, position: Int) {
         val article = articles[position]
-        holder.newsHeadline.text = article.title
-        Glide.with(context).load(article.imageUrl).into(holder.newsImage)
+        holder.newsHeadline.text = article.mainheading
+        Glide.with(context).load(article.frontimage).into(holder.newsImage)
     }
 
 }

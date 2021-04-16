@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/oneMinuteVideoPlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:videoId="VRkL6qa39gs"

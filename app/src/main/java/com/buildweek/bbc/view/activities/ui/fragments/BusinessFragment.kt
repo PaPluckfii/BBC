@@ -13,10 +13,10 @@ import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapte
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
 
-class BusinessFragment :Fragment(){
+class BusinessFragment : Fragment() {
 
-    lateinit var viewModel : MainViewModel
-    lateinit var adapter : InshortsRecyclerAdapter
+    lateinit var viewModel: MainViewModel
+    lateinit var adapter: InshortsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,9 +27,9 @@ class BusinessFragment :Fragment(){
         val root = inflater.inflate(R.layout.fragment_business, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.callApi("business")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it.data) }!!
+        viewModel.newsByCategory("Business")
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
         })
