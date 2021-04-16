@@ -31,7 +31,7 @@ class AfricaFragment :Fragment(){
         val root = inflater.inflate(R.layout.fragment_africa, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.callApi("africa")
+        viewModel.callApi("Africa")
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
 
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it.data) }!!
