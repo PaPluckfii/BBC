@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.ui.fragments.VideoFragment">
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/videoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"/>
 
 </FrameLayout>
