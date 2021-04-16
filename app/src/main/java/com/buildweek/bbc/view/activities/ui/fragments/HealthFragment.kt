@@ -27,9 +27,9 @@ class HealthFragment :Fragment(){
         val root = inflater.inflate(R.layout.fragment_health, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.callApi("health")
+        viewModel.newsByCategory("Health")
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it.data) }!!
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
         })

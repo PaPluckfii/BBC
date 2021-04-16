@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,8 +12,6 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
-import kotlinx.android.synthetic.main.fragment_africa.view.*
-import kotlin.time.microseconds
 
 
 class AfricaFragment :Fragment(){
@@ -31,10 +28,10 @@ class AfricaFragment :Fragment(){
         val root = inflater.inflate(R.layout.fragment_africa, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.callApi("Africa")
+        viewModel.newsByRegion("Africa")
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
 
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it.data) }!!
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
         })
