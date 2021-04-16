@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.ui.MainActivity">
+    tools:context=".view.activities.ui.activities.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:logo="@drawable/bbc_news"
+
             app:popupTheme="@style/Theme.Nav.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
