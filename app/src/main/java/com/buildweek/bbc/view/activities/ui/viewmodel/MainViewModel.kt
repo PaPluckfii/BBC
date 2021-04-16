@@ -8,23 +8,27 @@ import com.buildweek.bbc.view.activities.ui.model.InShortsNews
 import com.buildweek.bbc.view.activities.ui.model.LocalServerNews
 import com.buildweek.bbc.view.activities.ui.repository.MainRepository
 
-class MainViewModel() : ViewModel(){
+class MainViewModel() : ViewModel() {
 
     val repository = MainRepository
 
-    fun getInshotsData(): MutableLiveData<InShortsNews>{
+    fun getInshotsData(): MutableLiveData<LocalServerNews> {
         return repository.getInshotsNewsData()
     }
 
-    fun callApi(category : String){
-        repository.inshortsApiCall(category)
+    fun newsByRegion(name: String) {
+        repository.inshortsApiCall(name)
     }
 
-    fun callLocalApi(){
+    fun newsByCategory(category: String) {
+        repository.newsByCategory(category)
+    }
+
+    fun worldNews() {
         repository.callLocalApi()
     }
 
-    fun getLocalServerNews(): MutableLiveData<LocalServerNews>{
+    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
         return repository.getLocalServerNews()
     }
 

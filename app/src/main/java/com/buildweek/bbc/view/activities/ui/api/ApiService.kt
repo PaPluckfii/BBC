@@ -8,18 +8,17 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("news")
-    fun getNews(
-            @Query("category") category: String
-    ): Call<InShortsNews>
+    @GET("region")
+    fun getNewsByRegion(
+        @Query("name") name: String
+    ): Call<LocalServerNews>
 
-    @GET("/bbc")
+    @GET("category")
     fun getNewsByCategory(
         @Query("category") category: String
     ): Call<LocalServerNews>
 
     @GET("world")
-    fun getNewsByCategory(
-
+    fun getWorldNews(
     ): Call<LocalServerNews>
 }

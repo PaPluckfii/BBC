@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.fragment_africa.*
 
 class TopStoriesFragment : Fragment() {
 
-    lateinit var viewModel : MainViewModel
-    lateinit var adapter : LocalServerRecyclerAdapter
+    lateinit var viewModel: MainViewModel
+    lateinit var adapter: LocalServerRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,15 +25,16 @@ class TopStoriesFragment : Fragment() {
     ): View? {
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.callLocalApi()
+        viewModel.worldNews()
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1,it) }!!
+            adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
         })
 
         return inflater.inflate(R.layout.fragment_top_stories, container, false)
     }
+
     companion object {
         fun newInstance() = TopStoriesFragment()
     }
