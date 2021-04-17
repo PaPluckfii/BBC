@@ -1,6 +1,8 @@
 package com.buildweek.bbc.view.activities.ui.recyclerviews
 
 import android.content.Context
+import android.content.res.loader.AssetsProvider
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.buildweek.bbc.R
-import com.buildweek.bbc.view.activities.ui.model.Data
 import com.buildweek.bbc.view.activities.ui.model.LocalServerNewsItem
 import com.bumptech.glide.Glide
+
 
 class LocalServerRecyclerAdapter(val context: Context, val articles: List<LocalServerNewsItem>):
     RecyclerView.Adapter<LocalServerRecyclerAdapter.LocalServerRecyclerViewHolder>() {
@@ -18,6 +20,8 @@ class LocalServerRecyclerAdapter(val context: Context, val articles: List<LocalS
     class LocalServerRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var newsImage = itemView.findViewById<ImageView>(R.id.inShotsNewsImage)
         var newsHeadline = itemView.findViewById<TextView>(R.id.inShotsNewsHeadline)
+        var newsTime = itemView.findViewById<TextView>(R.id.inShotsNewsUploadedAt)
+        var newsLocation = itemView.findViewById<TextView>(R.id.inShotsNewsLocation)
     }
 
     override fun onCreateViewHolder(
@@ -34,7 +38,11 @@ class LocalServerRecyclerAdapter(val context: Context, val articles: List<LocalS
 
     override fun onBindViewHolder(holder: LocalServerRecyclerViewHolder, position: Int) {
         val article = articles[position]
+        val type = Typeface.createFromAsset(context.assets,"sanitrixiesans.ttf")
+        holder.newsHeadline.typeface = type
         holder.newsHeadline.text = article.mainheading
+        holder.newsLocation.text = article.region
+        holder.newsTime.text = article.dateofnews
         Glide.with(context).load(article.image1).into(holder.newsImage)
     }
 }
