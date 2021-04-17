@@ -32,8 +32,8 @@ class AfricaFragment :Fragment(){
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
 
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewAfrica.adapter = adapter
+            inShotsRecyclerViewAfrica.layoutManager = LinearLayoutManager(context)
         })
 
         return root

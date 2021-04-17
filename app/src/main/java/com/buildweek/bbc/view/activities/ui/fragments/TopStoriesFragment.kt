@@ -13,6 +13,7 @@ import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapte
 import com.buildweek.bbc.view.activities.ui.recyclerviews.LocalServerRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
+import kotlinx.android.synthetic.main.fragment_top_stories.*
 
 class TopStoriesFragment : Fragment() {
 
@@ -24,15 +25,18 @@ class TopStoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        return inflater.inflate(R.layout.fragment_top_stories, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.worldNews()
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewTopStories.adapter = adapter
+            inShotsRecyclerViewTopStories.layoutManager = LinearLayoutManager(context)
         })
-
-        return inflater.inflate(R.layout.fragment_top_stories, container, false)
     }
 
     companion object {

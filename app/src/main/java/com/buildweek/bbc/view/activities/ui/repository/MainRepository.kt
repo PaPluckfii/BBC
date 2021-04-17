@@ -16,6 +16,11 @@ object MainRepository {
         return _newsList
     }
 
+    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
+        return _newsLocalServerList
+    }
+
+    //regionnews
     fun inshortsApiCall(category: String) {
         val news = RetrofitBuilder.newsInstance.getNewsByRegion(category)
         news.enqueue(object : retrofit2.Callback<LocalServerNews> {
@@ -36,6 +41,8 @@ object MainRepository {
         })
     }
 
+
+    //worldnews
     fun callLocalApi() {
         val news = RetrofitBuilder.newsInstance.getWorldNews()
         news.enqueue(object : retrofit2.Callback<LocalServerNews> {
@@ -53,12 +60,30 @@ object MainRepository {
         })
     }
 
-    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
-        return _newsLocalServerList
-    }
 
+    //categorynews
     fun newsByCategory(category: String) {
         val news = RetrofitBuilder.newsInstance.getNewsByCategory(category)
+        news.enqueue(object : retrofit2.Callback<LocalServerNews> {
+            override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
+                Log.d("Sumeet", "Error in fetching news", t)
+
+            }
+
+            override fun onResponse(
+                call: Call<LocalServerNews>,
+                response: Response<LocalServerNews>
+            ) {
+                val news = response.body()
+                if (news != null) {
+                    _newsLocalServerList.postValue(response.body())
+                }
+            }
+        })
+    }
+
+    fun newsByTag(tag: String) {
+        val news = RetrofitBuilder.newsInstance.newsByTag(tag)
         news.enqueue(object : retrofit2.Callback<LocalServerNews> {
             override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
                 Log.d("Sumeet", "Error in fetching news", t)

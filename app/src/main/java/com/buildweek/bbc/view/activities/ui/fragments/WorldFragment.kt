@@ -14,7 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_world.*
 
 
-class WorldFragment :Fragment(){
+class WorldFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,8 +30,8 @@ class WorldFragment :Fragment(){
         val viewPagerAdapter = HomeViewPagerAdapter(this)
         viewPagerHome.adapter = viewPagerAdapter
 
-        TabLayoutMediator(tabLayoutHome,viewPagerHome){ tab, position ->
-            tab.text = when(position){
+        TabLayoutMediator(tabLayoutHome, viewPagerHome) { tab, position ->
+            tab.text = when (position) {
                 0 -> "Top Stories"
                 1 -> "Video"
                 2 -> "My News"

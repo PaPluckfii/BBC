@@ -6,7 +6,7 @@
     tools:context=".view.activities.ui.fragments.LatinAmericaFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inShotsRecyclerView"
+        android:id="@+id/inShotsRecyclerViewLatin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_10"/>

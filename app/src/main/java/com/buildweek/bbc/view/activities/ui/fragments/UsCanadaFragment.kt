@@ -12,6 +12,7 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
+import kotlinx.android.synthetic.main.fragment_us_canada.*
 
 class UsCanadaFragment :Fragment(){
 
@@ -30,8 +31,8 @@ class UsCanadaFragment :Fragment(){
         viewModel.newsByRegion("US")
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewUS.adapter = adapter
+            inShotsRecyclerViewUS.layoutManager = LinearLayoutManager(context)
         })
 
         return root

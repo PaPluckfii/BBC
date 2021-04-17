@@ -16,6 +16,10 @@ class MainViewModel() : ViewModel() {
         return repository.getInshotsNewsData()
     }
 
+    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
+        return repository.getLocalServerNews()
+    }
+
     fun newsByRegion(name: String) {
         repository.inshortsApiCall(name)
     }
@@ -28,8 +32,9 @@ class MainViewModel() : ViewModel() {
         repository.callLocalApi()
     }
 
-    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
-        return repository.getLocalServerNews()
+
+    fun newsByTags(tag: String) {
+        repository.newsByTag(tag)
     }
 
 }

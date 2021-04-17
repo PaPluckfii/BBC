@@ -12,6 +12,7 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
+import kotlinx.android.synthetic.main.fragment_football.*
 
 class FootballFragment :Fragment(){
 
@@ -27,11 +28,11 @@ class FootballFragment :Fragment(){
         val root = inflater.inflate(R.layout.fragment_football, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByCategory("football")
+        viewModel.newsByCategory("Sports")
         viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewFootball.adapter = adapter
+            inShotsRecyclerViewFootball.layoutManager = LinearLayoutManager(context)
         })
 
         return root
