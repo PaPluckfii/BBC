@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.fragment_health.*
-import kotlinx.android.synthetic.main.fragment_health.inShotsRecyclerViewHealth
+import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_rugby_union.*
 
-class RugbyUnionFragment : Fragment() {
+class RugbyUnionFragment :Fragment(){
 
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: InshortsRecyclerAdapter
+    lateinit var viewModel : MainViewModel
+    lateinit var adapter : InshortsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +28,9 @@ class RugbyUnionFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_rugby_union, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByTags("Rugby")
+        viewModel.getNewsByTag("Rugby")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewRugby.adapter = adapter
             inShotsRecyclerViewRugby.layoutManager = LinearLayoutManager(context)
         })

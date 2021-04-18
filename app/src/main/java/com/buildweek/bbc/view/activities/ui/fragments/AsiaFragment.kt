@@ -14,10 +14,10 @@ import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_asia.*
 
-class AsiaFragment : Fragment() {
+class AsiaFragment :Fragment(){
 
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: InshortsRecyclerAdapter
+    lateinit var viewModel : MainViewModel
+    lateinit var adapter : InshortsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +29,8 @@ class AsiaFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.newsByRegion("Asia")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewAsia.adapter = adapter
             inShotsRecyclerViewAsia.layoutManager = LinearLayoutManager(context)
         })

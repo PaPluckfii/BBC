@@ -15,10 +15,10 @@ import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_cricket.*
 
 
-class CricketFragment : Fragment() {
+class CricketFragment :Fragment(){
 
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: InshortsRecyclerAdapter
+    lateinit var viewModel : MainViewModel
+    lateinit var adapter : InshortsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +29,9 @@ class CricketFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_cricket, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByCategory("Sports")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
+        viewModel.getNewsByTag("Cricket")
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewCricket.adapter = adapter
             inShotsRecyclerViewCricket.layoutManager = LinearLayoutManager(context)
         })

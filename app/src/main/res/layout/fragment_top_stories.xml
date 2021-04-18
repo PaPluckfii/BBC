@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activities.ui.fragments.TopStoriesFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,7 +14,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,18 +30,12 @@
                     android:visibility="gone"
                     app:videoId="y8ADyPc2sos" />
 
-                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                    android:id="@+id/swipe"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/inShotsRecyclerViewTopStories"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/inShotsRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp_10" />
-                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+                    android:layout_height="wrap_content"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:layout_margin="@dimen/dp_10" />
 
             </LinearLayout>
 
@@ -53,7 +48,7 @@
         android:id="@+id/topNewsProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:indeterminateDrawable="@drawable/progress_bar_red" />
+        android:indeterminateDrawable="@drawable/progress_bar_red"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

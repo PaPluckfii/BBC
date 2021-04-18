@@ -5,10 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.buildweek.bbc.R
+import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
+import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.fragment_africa.*
+import kotlinx.android.synthetic.main.fragment_tennis.*
 
 
 class TennisFragment :Fragment(){
+
+    lateinit var viewModel : MainViewModel
+    lateinit var adapter : InshortsRecyclerAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -16,6 +27,14 @@ class TennisFragment :Fragment(){
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_tennis, container, false)
+
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.getNewsByTag("Tennis")
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
+            inShotsRecyclerViewTennis.adapter = adapter
+            inShotsRecyclerViewTennis.layoutManager = LinearLayoutManager(context)
+        })
 
         return root
     }

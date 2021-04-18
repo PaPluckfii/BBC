@@ -28,7 +28,7 @@ class AfricaFragment :Fragment(){
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.newsByRegion("Africa")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
 
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewAfrica.adapter = adapter

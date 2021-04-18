@@ -12,23 +12,18 @@ import retrofit2.Response
 
 object MainRepository {
 
-    private var _newsList: MutableLiveData<LocalServerNews> = MutableLiveData()
     private var _newsLocalServerList: MutableLiveData<LocalServerNews> = MutableLiveData()
-
-    fun getInshotsNewsData(): MutableLiveData<LocalServerNews> {
-        return _newsList
-    }
 
     fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
         return _newsLocalServerList
     }
 
-    fun inshortsApiCall(category: String) {
-        val news = RetrofitBuilder.newsInstance.getNewsByRegion(category)
+    fun newsByRegion(region: String) {
+        val news = RetrofitBuilder.newsInstance.getNewsByRegion(region)
         news.enqueue(object : retrofit2.Callback<LocalServerNews> {
             override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
                 Log.d("Sumeet", "Error in fetching news", t)
-                _newsList.postValue(null)
+                _newsLocalServerList.postValue(null)
             }
 
             override fun onResponse(
@@ -37,93 +32,26 @@ object MainRepository {
             ) {
                 val news = response.body()
                 if (news != null) {
-                    _newsList.postValue(response.body())
+                    _newsLocalServerList.postValue(response.body())
                 }
             }
         })
     }
 
-    fun callLocalApi(progressBar: ProgressBar) {
-
-        //worldnews
-        fun callLocalApi() {
-            val news = RetrofitBuilder.newsInstance.getWorldNews()
-            news.enqueue(object : retrofit2.Callback<LocalServerNews> {
-                override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
-                    _newsLocalServerList.postValue(null)
-                }
-
-                override fun onResponse(
-                    call: Call<LocalServerNews>,
-                    response: Response<LocalServerNews>
-                ) {
-                    _newsLocalServerList.postValue(response.body())
-                }
-
-            })
-        }
-
-
-//        fun newsByCategory(category: String) {
-//            val news = RetrofitBuilder.newsInstance.getNewsByCategory(category)
-//            news.enqueue(object : retrofit2.Callback<LocalServerNews> {
-//                override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
-//                    Log.d("Sumeet", "Error in fetching news", t)
-//
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<LocalServerNews>,
-//                    response: Response<LocalServerNews>
-//                ) {
-//                    val news = response.body()
-//                    if (news != null) {
-//                        _newsLocalServerList.postValue(response.body())
-//                    }
-//                }
-//            })
-//        }
-
-
-//        fun newsByTag(tag: String) {
-//            val news = RetrofitBuilder.newsInstance.newsByTag(tag)
-//            news.enqueue(object : retrofit2.Callback<LocalServerNews> {
-//                override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
-//                    Log.d("Sumeet", "Error in fetching news", t)
-//
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<LocalServerNews>,
-//                    response: Response<LocalServerNews>
-//                ) {
-//                    val news = response.body()
-//                    if (news != null) {
-//                        _newsLocalServerList.postValue(response.body())
-//                    }
-//                }
-//            })
-//        }
-
-    }
-
-    fun newsByCategory(category: String) {
-        val news = RetrofitBuilder.newsInstance.getNewsByCategory(category)
+    fun worldNews() {
+        val news = RetrofitBuilder.newsInstance.getWorldNews()
         news.enqueue(object : retrofit2.Callback<LocalServerNews> {
             override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
-                Log.d("Sumeet", "Error in fetching news", t)
-
+                _newsLocalServerList.postValue(null)
             }
 
             override fun onResponse(
                 call: Call<LocalServerNews>,
                 response: Response<LocalServerNews>
             ) {
-                val news = response.body()
-                if (news != null) {
-                    _newsLocalServerList.postValue(response.body())
-                }
+                _newsLocalServerList.postValue(response.body())
             }
+
         })
     }
 
@@ -132,7 +60,6 @@ object MainRepository {
         news.enqueue(object : retrofit2.Callback<LocalServerNews> {
             override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
                 Log.d("Sumeet", "Error in fetching news", t)
-
             }
 
             override fun onResponse(
@@ -147,5 +74,25 @@ object MainRepository {
         })
     }
 
+
+    fun newsByCategory(category: String) {
+        val news = RetrofitBuilder.newsInstance.getNewsByCategory(category)
+        news.enqueue(object : retrofit2.Callback<LocalServerNews> {
+            override fun onFailure(call: Call<LocalServerNews>, t: Throwable) {
+                Log.d("Sumeet", "Error in fetching news", t)
+                _newsLocalServerList.postValue(null)
+            }
+
+            override fun onResponse(
+                call: Call<LocalServerNews>,
+                response: Response<LocalServerNews>
+            ) {
+                val news = response.body()
+                if (news != null) {
+                    _newsLocalServerList.postValue(response.body())
+                }
+            }
+        })
+    }
 
 }

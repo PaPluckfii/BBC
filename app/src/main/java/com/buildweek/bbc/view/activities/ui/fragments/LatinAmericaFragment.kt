@@ -14,23 +14,23 @@ import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_latin_america.*
 
-class LatinAmericaFragment :Fragment(){
+class LatinAmericaFragment : Fragment() {
 
-    lateinit var viewModel : MainViewModel
-    lateinit var adapter : InshortsRecyclerAdapter
+    lateinit var viewModel: MainViewModel
+    lateinit var adapter: InshortsRecyclerAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_latin_america, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.newsByRegion("Latin America")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
             inShotsRecyclerViewLatin.adapter = adapter
             inShotsRecyclerViewLatin.layoutManager = LinearLayoutManager(context)
         })

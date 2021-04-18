@@ -12,13 +12,14 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapter
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
+import kotlinx.android.synthetic.main.fragment_asia.*
 import kotlinx.android.synthetic.main.fragment_atheletics.*
 
 
-class AtheleticsFragment : Fragment() {
+class AtheleticsFragment :Fragment(){
 
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: InshortsRecyclerAdapter
+    lateinit var viewModel : MainViewModel
+    lateinit var adapter : InshortsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +30,9 @@ class AtheleticsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_atheletics, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByCategory("Sports")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
+        viewModel.getNewsByTag("Athletics")
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewAthletics.adapter = adapter
             inShotsRecyclerViewAthletics.layoutManager = LinearLayoutManager(context)
         })

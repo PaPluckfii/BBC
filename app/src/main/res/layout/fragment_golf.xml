@@ -4,7 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    >
+    android:orientation="vertical">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="300dp"
+        android:layout_height="@dimen/dp_200"
+        android:background="@drawable/golf" />
 
     <TextView
         android:layout_width="match_parent"
@@ -12,7 +17,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Oops! There is no latest news"
-        android:textColor="@color/black"
+        android:textColor="@color/theme_red"
         android:textSize="@dimen/sp_15" />
 
 </LinearLayout>

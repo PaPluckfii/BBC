@@ -14,10 +14,10 @@ import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_sport.*
 
-class SportFragment : Fragment() {
+class SportFragment :Fragment(){
 
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: InshortsRecyclerAdapter
+    lateinit var viewModel : MainViewModel
+    lateinit var adapter : InshortsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +29,8 @@ class SportFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.newsByCategory("Sports")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1, it) }!!
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
+            adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewSports.adapter = adapter
             inShotsRecyclerViewSports.layoutManager = LinearLayoutManager(context)
         })

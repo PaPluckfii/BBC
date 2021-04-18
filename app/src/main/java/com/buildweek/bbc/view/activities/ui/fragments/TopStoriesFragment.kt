@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.ProgressBar
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -14,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.activities.DetailedNewsViewActivity
@@ -23,6 +26,7 @@ import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_top_stories.*
+import kotlinx.android.synthetic.main.item_inshots_layout.*
 
 class TopStoriesFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickListener{
 
@@ -31,7 +35,6 @@ class TopStoriesFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickLi
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var progressBar: ProgressBar
     lateinit var youTubePlayerView: YouTubePlayerView
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,22 +62,29 @@ class TopStoriesFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickLi
         progressBar = view.findViewById<ProgressBar>(R.id.topNewsProgressBar)
         youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtubePlayer1)
 
+
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.worldNews(progressBar)
+        viewModel.worldNews()
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewTopStories.adapter = adapter
+            inShotsRecyclerViewTopStories.layoutManager = LinearLayoutManager(context)
             youTubePlayerView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+
+            val layoutAnimationController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation)
+            inShotsRecyclerViewTopStories.layoutAnimation = layoutAnimationController
+            adapter.notifyDataSetChanged()
+            inShotsRecyclerViewTopStories.scheduleLayoutAnimation()
+
         })
 
-
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.worldNews(progressBar)
+            viewModel.worldNews()
             viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
                 adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-                inShotsRecyclerView.adapter = adapter
-                inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+                inShotsRecyclerViewTopStories.adapter = adapter
+                inShotsRecyclerViewTopStories.layoutManager = LinearLayoutManager(context)
             })
             adapter.notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false

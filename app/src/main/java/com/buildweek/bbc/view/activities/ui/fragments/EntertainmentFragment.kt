@@ -29,7 +29,7 @@ class EntertainmentFragment :Fragment(){
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.newsByCategory("Entertainment")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerViewEntertainment.adapter = adapter
             inShotsRecyclerViewEntertainment.layoutManager = LinearLayoutManager(context)
