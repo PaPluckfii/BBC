@@ -27,8 +27,8 @@ class FootballFragment :Fragment(){
         val root = inflater.inflate(R.layout.fragment_football, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByCategory("football")
-        viewModel.getInshotsData().observe(viewLifecycleOwner, Observer {
+        viewModel.getNewsByTag("Football")
+        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
             inShotsRecyclerView.adapter = adapter
             inShotsRecyclerView.layoutManager = LinearLayoutManager(context)

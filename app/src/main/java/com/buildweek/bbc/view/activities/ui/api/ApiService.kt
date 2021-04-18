@@ -21,4 +21,12 @@ interface ApiService {
     @GET("world")
     fun getWorldNews(
     ): Call<LocalServerNews>
+
+    @GET("tag")
+    fun newsByTag(
+        @Query(
+            "q"
+        ) q: String
+    ): Call<LocalServerNews>
+
 }

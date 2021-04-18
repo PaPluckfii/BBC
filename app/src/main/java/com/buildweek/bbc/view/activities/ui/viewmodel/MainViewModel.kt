@@ -13,24 +13,24 @@ class MainViewModel() : ViewModel() {
 
     val repository = MainRepository
 
-    fun getInshotsData(): MutableLiveData<LocalServerNews> {
-        return repository.getInshotsNewsData()
+    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
+        return repository.getLocalServerNews()
     }
 
     fun newsByRegion(name: String) {
-        repository.inshortsApiCall(name)
+        repository.newsByRegion(name)
     }
 
     fun newsByCategory(category: String) {
         repository.newsByCategory(category)
     }
 
-    fun worldNews(progressBar: ProgressBar) {
-        repository.callLocalApi(progressBar)
+    fun worldNews() {
+        repository.worldNews()
     }
 
-    fun getLocalServerNews(): MutableLiveData<LocalServerNews> {
-        return repository.getLocalServerNews()
+    fun getNewsByTag(tag: String){
+        return repository.newsByTag(tag)
     }
 
 }
