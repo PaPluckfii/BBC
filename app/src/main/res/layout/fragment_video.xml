@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:videoId="VRkL6qa39gs"
-            app:autoPlay="true"
             app:showYouTubeButton="false"
             android:layout_margin="@dimen/dp_5"/>
 

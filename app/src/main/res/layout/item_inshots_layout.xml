@@ -45,7 +45,6 @@
                     android:id="@+id/inShotsNewsUploadedAt"
                     android:layout_margin="@dimen/dp_2"
                     android:layout_width="wrap_content"
-                    android:text="12h"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp_20"/>
 
@@ -60,7 +59,6 @@
                     android:id="@+id/inShotsNewsLocation"
                     android:layout_margin="@dimen/dp_2"
                     android:layout_width="wrap_content"
-                    android:text="UK"
                     android:layout_height="wrap_content"
                     android:textColor="@color/theme_red"
                     android:textStyle="bold"
