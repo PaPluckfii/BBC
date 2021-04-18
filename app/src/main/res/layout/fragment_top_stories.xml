@@ -31,7 +31,7 @@
                     app:videoId="y8ADyPc2sos" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/inShotsRecyclerView"
+                    android:id="@+id/inShotsRecyclerViewTopStories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layoutAnimation="@anim/layout_animation"

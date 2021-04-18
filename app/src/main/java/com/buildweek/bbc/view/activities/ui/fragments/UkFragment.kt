@@ -31,8 +31,8 @@ class UkFragment :Fragment(){
         viewModel.newsByRegion("UK")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewUk.adapter = adapter
+            inShotsRecyclerViewUk.layoutManager = LinearLayoutManager(context)
         })
 
         return root

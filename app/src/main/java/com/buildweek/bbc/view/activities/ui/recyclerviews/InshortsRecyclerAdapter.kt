@@ -16,11 +16,13 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class InshortsRecyclerAdapter(val context: Context, val articles: LocalServerNews) :
-    RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>(){
+    RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>() {
 
     class InshortsRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var newsImage = itemView.findViewById<ImageView>(R.id.inShotsNewsImage)
         var newsHeadline = itemView.findViewById<TextView>(R.id.inShotsNewsHeadline)
+        var inShotsNewsLocation = itemView.findViewById<TextView>(R.id.inShotsNewsLocation)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InshortsRecyclerViewHolder {
@@ -35,6 +37,7 @@ class InshortsRecyclerAdapter(val context: Context, val articles: LocalServerNew
     override fun onBindViewHolder(holder: InshortsRecyclerViewHolder, position: Int) {
         val article = articles[position]
         holder.newsHeadline.text = article.mainheading
+        holder.inShotsNewsLocation.text = article.region
         Glide.with(context).load(article.frontimage).into(holder.newsImage)
     }
 }

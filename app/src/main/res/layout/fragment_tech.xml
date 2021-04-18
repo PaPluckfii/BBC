@@ -6,7 +6,7 @@
     tools:context=".view.activities.ui.fragments.TechFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inShotsRecyclerView"
+        android:id="@+id/inShotsRecyclerViewTech"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_10"/>

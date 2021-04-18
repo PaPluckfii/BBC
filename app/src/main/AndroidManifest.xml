@@ -12,22 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BBC_News">
-        <activity android:name=".view.activities.ui.activities.DetailedNewsViewActivity"></activity>
+
         <activity
-            android:name=".view.activities.ui.activities.DetailedNewsActivity"
+            android:name=".view.activities.ui.activities.DetailedNewsViewActivity"
             android:label="@string/title_activity_detailed_news"
-            android:theme="@style/Theme.BBC_News.NoActionBar" />
+            android:theme="@style/Theme.BBC_News.NoActionBar"></activity>
         <activity android:name=".view.activities.ui.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.activities.ui.activities.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.BBC_News.NoActionBar" />
+            android:theme="@style/Theme.BBC_News.NoActionBar"></activity>
     </application>
 
 </manifest>

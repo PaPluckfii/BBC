@@ -13,6 +13,7 @@ import com.buildweek.bbc.view.activities.ui.recyclerviews.InshortsRecyclerAdapte
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_asia.*
+import kotlinx.android.synthetic.main.fragment_atheletics.*
 
 
 class AtheleticsFragment :Fragment(){
@@ -32,8 +33,8 @@ class AtheleticsFragment :Fragment(){
         viewModel.getNewsByTag("Athletics")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> InshortsRecyclerAdapter(it1,it) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewAthletics.adapter = adapter
+            inShotsRecyclerViewAthletics.layoutManager = LinearLayoutManager(context)
         })
 
         return root

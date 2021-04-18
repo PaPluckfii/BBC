@@ -20,6 +20,7 @@ import com.buildweek.bbc.view.activities.ui.recyclerviews.LocalServerRecyclerAda
 import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlinx.android.synthetic.main.fragment_africa.*
+import kotlinx.android.synthetic.main.fragment_popular.*
 
 
 class PopularFragment : Fragment() ,LocalServerRecyclerAdapter.OnItemClickListener{
@@ -51,13 +52,13 @@ class PopularFragment : Fragment() ,LocalServerRecyclerAdapter.OnItemClickListen
         viewModel.worldNews()
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewPopular.adapter = adapter
+            inShotsRecyclerViewPopular.layoutManager = LinearLayoutManager(context)
 
             val layoutAnimationController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation)
-            inShotsRecyclerView.layoutAnimation = layoutAnimationController
+            inShotsRecyclerViewPopular.layoutAnimation = layoutAnimationController
             adapter.notifyDataSetChanged()
-            inShotsRecyclerView.scheduleLayoutAnimation()
+            inShotsRecyclerViewPopular.scheduleLayoutAnimation()
 
         })
 
@@ -65,8 +66,8 @@ class PopularFragment : Fragment() ,LocalServerRecyclerAdapter.OnItemClickListen
             viewModel.worldNews()
             viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
                 adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-                inShotsRecyclerView.adapter = adapter
-                inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+                inShotsRecyclerViewPopular.adapter = adapter
+                inShotsRecyclerViewPopular.layoutManager = LinearLayoutManager(context)
             })
             adapter.notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false

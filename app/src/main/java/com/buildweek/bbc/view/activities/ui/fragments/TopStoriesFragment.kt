@@ -67,15 +67,15 @@ class TopStoriesFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickLi
         viewModel.worldNews()
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerView.adapter = adapter
-            inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewTopStories.adapter = adapter
+            inShotsRecyclerViewTopStories.layoutManager = LinearLayoutManager(context)
             youTubePlayerView.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
 
             val layoutAnimationController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation)
-            inShotsRecyclerView.layoutAnimation = layoutAnimationController
+            inShotsRecyclerViewTopStories.layoutAnimation = layoutAnimationController
             adapter.notifyDataSetChanged()
-            inShotsRecyclerView.scheduleLayoutAnimation()
+            inShotsRecyclerViewTopStories.scheduleLayoutAnimation()
 
         })
 
@@ -83,8 +83,8 @@ class TopStoriesFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickLi
             viewModel.worldNews()
             viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
                 adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-                inShotsRecyclerView.adapter = adapter
-                inShotsRecyclerView.layoutManager = LinearLayoutManager(context)
+                inShotsRecyclerViewTopStories.adapter = adapter
+                inShotsRecyclerViewTopStories.layoutManager = LinearLayoutManager(context)
             })
             adapter.notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false

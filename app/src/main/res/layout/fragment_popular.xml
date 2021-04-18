@@ -21,7 +21,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/inShotsRecyclerView"
+                    android:id="@+id/inShotsRecyclerViewPopular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layoutAnimation="@anim/layout_animation"

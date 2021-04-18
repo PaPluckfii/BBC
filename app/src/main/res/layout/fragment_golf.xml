@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.ui.fragments.GolfFragment">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/inShotsRecyclerView"
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="300dp"
+        android:layout_height="@dimen/dp_200"
+        android:background="@drawable/golf" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Oops! There is no latest news"
+        android:textColor="@color/theme_red"
+        android:textSize="@dimen/sp_15" />
 
-</FrameLayout>
+</LinearLayout>

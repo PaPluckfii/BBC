@@ -44,7 +44,7 @@ dependencies {
     def jetpack_version = "2.1.0"
     def anko_version = '0.10.0'
     def arch_version = '2.2.0-alpha01'
-    def retrofit_version = "2.6.1"
+    def retrofit_version = "2.9.0"
     def coroutines = "1.1.1"
     def kotlinCoroutineVersion = "1.1.1"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -106,4 +106,10 @@ dependencies {
     //youTube integration
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
+    //scrolling recycler view
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 }
