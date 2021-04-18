@@ -6,14 +6,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    const val BASE_URL = "https://1a6197c929e7.ngrok.io/api/bbc/"
+    const val BASE_URL = "https://f33bc6105a0e.ngrok.io/api/bbc/"
 
     val newsInstance: ApiService
     init {
         val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
         newsInstance = retrofitBuilder.create(ApiService::class.java)
     }
 }
