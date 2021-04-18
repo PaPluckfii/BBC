@@ -24,7 +24,6 @@ class AfricaFragment :Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root = inflater.inflate(R.layout.fragment_africa, container, false)
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)

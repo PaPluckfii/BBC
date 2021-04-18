@@ -1,5 +1,6 @@
 package com.buildweek.bbc.view.activities.ui.viewmodel
 
+import android.widget.ProgressBar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -24,8 +25,8 @@ class MainViewModel() : ViewModel() {
         repository.newsByCategory(category)
     }
 
-    fun worldNews() {
-        repository.callLocalApi()
+    fun worldNews(progressBar: ProgressBar) {
+        repository.callLocalApi(progressBar)
     }
 
     fun getLocalServerNews(): MutableLiveData<LocalServerNews> {

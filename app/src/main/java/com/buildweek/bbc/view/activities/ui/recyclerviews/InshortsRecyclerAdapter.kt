@@ -1,6 +1,7 @@
 package com.buildweek.bbc.view.activities.ui.recyclerviews
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.buildweek.bbc.R
 import com.buildweek.bbc.view.activities.ui.model.LocalServerNews
 import com.bumptech.glide.Glide
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class InshortsRecyclerAdapter(val context: Context, val articles: LocalServerNews) :
-    RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>() {
+    RecyclerView.Adapter<InshortsRecyclerAdapter.InshortsRecyclerViewHolder>(){
 
     class InshortsRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var newsImage = itemView.findViewById<ImageView>(R.id.inShotsNewsImage)
@@ -33,5 +37,4 @@ class InshortsRecyclerAdapter(val context: Context, val articles: LocalServerNew
         holder.newsHeadline.text = article.mainheading
         Glide.with(context).load(article.frontimage).into(holder.newsImage)
     }
-
 }
