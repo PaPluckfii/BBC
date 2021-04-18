@@ -1,6 +1,8 @@
 package com.buildweek.bbc.view.activities.ui.model
 
-data class LocalServerNewsItem(
+import java.io.Serializable
+
+data class LocalServerNewsItem (
     val author: String,
     val category: String,
     val catid: Int,
@@ -20,4 +22,4 @@ data class LocalServerNewsItem(
     val tags: String,
     val type: String,
     val video: String
-)
+): Serializable

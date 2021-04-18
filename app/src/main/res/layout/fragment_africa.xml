@@ -24,6 +24,7 @@
                 android:id="@+id/inShotsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layoutAnimation="@anim/layout_animation"
                 android:layout_margin="@dimen/dp_10" />
 
         </LinearLayout>

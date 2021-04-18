@@ -1,7 +1,6 @@
 package com.buildweek.bbc.view.activities.ui.recyclerviews
 
 import android.content.Context
-import android.content.res.loader.AssetsProvider
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +13,12 @@ import com.buildweek.bbc.view.activities.ui.model.LocalServerNewsItem
 import com.bumptech.glide.Glide
 
 
-class LocalServerRecyclerAdapter(val context: Context, val articles: List<LocalServerNewsItem>):
-    RecyclerView.Adapter<LocalServerRecyclerAdapter.LocalServerRecyclerViewHolder>() {
+class LocalServerRecyclerAdapter(
+    val context: Context,
+    val articles: List<LocalServerNewsItem>,
+    val listener: OnItemClickListener
+    ): RecyclerView.Adapter<LocalServerRecyclerAdapter.LocalServerRecyclerViewHolder>() {
 
-    class LocalServerRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var newsImage = itemView.findViewById<ImageView>(R.id.inShotsNewsImage)
-        var newsHeadline = itemView.findViewById<TextView>(R.id.inShotsNewsHeadline)
-        var newsTime = itemView.findViewById<TextView>(R.id.inShotsNewsUploadedAt)
-        var newsLocation = itemView.findViewById<TextView>(R.id.inShotsNewsLocation)
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -44,5 +40,31 @@ class LocalServerRecyclerAdapter(val context: Context, val articles: List<LocalS
         holder.newsLocation.text = article.region
         holder.newsTime.text = article.dateofnews
         Glide.with(context).load(article.image1).into(holder.newsImage)
+        holder.getArticle(article)
+    }
+
+
+
+    inner class LocalServerRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+        var newsImage = itemView.findViewById<ImageView>(R.id.inShotsNewsImage)
+        var newsHeadline = itemView.findViewById<TextView>(R.id.inShotsNewsHeadline)
+        var newsTime = itemView.findViewById<TextView>(R.id.inShotsNewsUploadedAt)
+        var newsLocation = itemView.findViewById<TextView>(R.id.inShotsNewsLocation)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+        lateinit var myArticle : LocalServerNewsItem
+        fun getArticle(article: LocalServerNewsItem){
+            myArticle = article
+        }
+
+        override fun onClick(v: View?) {
+            listener.onItemClicked(myArticle)
+        }
+    }
+
+    interface OnItemClickListener{
+        fun onItemClicked(article: LocalServerNewsItem)
     }
 }
