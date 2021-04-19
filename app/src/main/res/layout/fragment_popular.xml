@@ -6,7 +6,7 @@
     tools:context=".view.activities.ui.fragments.PopularFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/topNewsSwipeRefreshLayout"
+        android:id="@+id/popularSwipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -35,7 +35,7 @@
 
 
     <ProgressBar
-        android:id="@+id/topNewsProgressBar"
+        android:id="@+id/popularProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminateDrawable="@drawable/progress_bar_red"

@@ -21,6 +21,7 @@ import com.buildweek.bbc.view.activities.ui.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlinx.android.synthetic.main.fragment_africa.*
 import kotlinx.android.synthetic.main.fragment_popular.*
+import kotlinx.android.synthetic.main.fragment_top_stories.*
 
 
 class PopularFragment : Fragment() ,LocalServerRecyclerAdapter.OnItemClickListener{
@@ -29,6 +30,7 @@ class PopularFragment : Fragment() ,LocalServerRecyclerAdapter.OnItemClickListen
     lateinit var adapter: LocalServerRecyclerAdapter
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var progressBar: ProgressBar
+    lateinit var youTubePlayerView: YouTubePlayerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,35 +45,35 @@ class PopularFragment : Fragment() ,LocalServerRecyclerAdapter.OnItemClickListen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.topNewsSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.topNewsProgressBar)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.popularSwipeRefreshLayout)
+        progressBar = view.findViewById<ProgressBar>(R.id.popularProgressBar)
 
+        setRecyclerView()
 
+        swipeRefreshLayout.setOnRefreshListener {
+            setRecyclerView()
+            swipeRefreshLayout.isRefreshing = false
+        }
+    }
 
+    private fun setRecyclerView() {
+        progressBar.visibility = View.VISIBLE
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.worldNews()
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
             inShotsRecyclerViewPopular.adapter = adapter
             inShotsRecyclerViewPopular.layoutManager = LinearLayoutManager(context)
+            progressBar.visibility = View.GONE
 
-            val layoutAnimationController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation)
+            val layoutAnimationController: LayoutAnimationController =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
             inShotsRecyclerViewPopular.layoutAnimation = layoutAnimationController
+
             adapter.notifyDataSetChanged()
             inShotsRecyclerViewPopular.scheduleLayoutAnimation()
 
         })
-
-        swipeRefreshLayout.setOnRefreshListener {
-            viewModel.worldNews()
-            viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
-                adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-                inShotsRecyclerViewPopular.adapter = adapter
-                inShotsRecyclerViewPopular.layoutManager = LinearLayoutManager(context)
-            })
-            adapter.notifyDataSetChanged()
-            swipeRefreshLayout.isRefreshing = false
-        }
     }
 
     override fun onItemClicked(article: LocalServerNewsItem) {
