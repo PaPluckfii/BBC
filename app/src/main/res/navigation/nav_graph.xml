@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/topStoriesFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.TopStoriesFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.TopStoriesFragment"
         android:label="fragment_top_stories"
         tools:layout="@layout/fragment_top_stories" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsArticleFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.NewsArticleFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.NewsArticleFragment"
         android:label="fragment_news_article"
         tools:layout="@layout/fragment_news_article" />
 </navigation>

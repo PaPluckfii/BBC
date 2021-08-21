@@ -14,10 +14,10 @@
         android:theme="@style/Theme.BBC_News">
 
         <activity
-            android:name=".view.activities.ui.activities.DetailedNewsViewActivity"
+            android:name="com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity"
             android:label="@string/title_activity_detailed_news"
             android:theme="@style/Theme.BBC_News.NoActionBar"></activity>
-        <activity android:name=".view.activities.ui.activities.SplashScreenActivity"
+        <activity android:name="com.buildweek.bbc.clone.ui.activities.SplashScreenActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.ui.activities.HomeActivity"
+            android:name="com.buildweek.bbc.clone.ui.activities.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.BBC_News.NoActionBar"></activity>
     </application>
