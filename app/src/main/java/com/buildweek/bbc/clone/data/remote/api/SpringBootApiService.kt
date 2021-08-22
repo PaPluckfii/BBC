@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiService {
+interface SpringBootApiService {
     @GET("region")
     fun getNewsByRegion(
         @Query("name") name: String

@@ -7,12 +7,12 @@ object RetrofitBuilder {
 
     const val BASE_URL = "https://532629708222.ngrok.io/api/bbc/"
 
-    val newsInstance: ApiService
+    val NEWS_INSTANCE: SpringBootApiService
     init {
         val retrofitBuilder = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        newsInstance = retrofitBuilder.create(ApiService::class.java)
+        NEWS_INSTANCE = retrofitBuilder.create(SpringBootApiService::class.java)
     }
 }
