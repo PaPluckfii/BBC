@@ -2,6 +2,7 @@ package com.buildweek.bbc.clone.data.remote.model.opensourceapi
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class OpenSourceResponse(
     @SerializedName("articles")
@@ -10,4 +11,4 @@ data class OpenSourceResponse(
     val status: String?,
     @SerializedName("totalResults")
     val totalResults: Int?
-)
+) : Serializable

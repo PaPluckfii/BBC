@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.ui.fragments
+package com.buildweek.bbc.clone.ui.fragments.country
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,9 +19,9 @@ import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.android.synthetic.main.fragment_rugby_union.*
+import kotlinx.android.synthetic.main.fragment_latin_america.*
 
-class RugbyUnionFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
+class LatinAmericaFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickListener{
 
     lateinit var viewModel: MainViewModel
     lateinit var adapter: LocalServerRecyclerAdapter
@@ -35,15 +35,15 @@ class RugbyUnionFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickList
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_rugby_union, container, false)
+        val root = inflater.inflate(R.layout.fragment_latin_america, container, false)
 
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.rugbyUnionFragmentSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.rugbyUnionFragmentProgressBar)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.latinAmericaFragmentSwipeRefreshLayout)
+        progressBar = view.findViewById<ProgressBar>(R.id.latinAmericaFragmentProgressBar)
 
         setRecyclerView()
 
@@ -56,19 +56,19 @@ class RugbyUnionFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickList
     private fun setRecyclerView() {
         progressBar.visibility = View.VISIBLE
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getNewsByTag("Rugby")
+        viewModel.newsByRegion("Latin America")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewRugby.adapter = adapter
-            inShotsRecyclerViewRugby.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewLatin.adapter = adapter
+            inShotsRecyclerViewLatin.layoutManager = LinearLayoutManager(context)
             progressBar.visibility = View.GONE
 
             val layoutAnimationController: LayoutAnimationController =
                 AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewRugby.layoutAnimation = layoutAnimationController
+            inShotsRecyclerViewLatin.layoutAnimation = layoutAnimationController
 
             adapter.notifyDataSetChanged()
-            inShotsRecyclerViewRugby.scheduleLayoutAnimation()
+            inShotsRecyclerViewLatin.scheduleLayoutAnimation()
 
         })
     }

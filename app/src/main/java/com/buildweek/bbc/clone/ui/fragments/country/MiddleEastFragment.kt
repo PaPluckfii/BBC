@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.ui.fragments
+package com.buildweek.bbc.clone.ui.fragments.country
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,9 +19,9 @@ import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.android.synthetic.main.fragment_science.*
+import kotlinx.android.synthetic.main.fragment_middle_east.*
 
-class ScienceFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
+class MiddleEastFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
 
     lateinit var viewModel: MainViewModel
     lateinit var adapter: LocalServerRecyclerAdapter
@@ -30,21 +30,21 @@ class ScienceFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListene
     lateinit var youTubePlayerView: YouTubePlayerView
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_science, container, false)
+        val root = inflater.inflate(R.layout.fragment_middle_east, container, false)
 
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.scienceFragmentSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.scienceFragmentProgressBar)
-        youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtubePlayer1)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.middleEastFragmentSwipeRefreshLayout)
+        progressBar = view.findViewById<ProgressBar>(R.id.middleEastFragmentProgressBar)
+
         setRecyclerView()
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -56,20 +56,20 @@ class ScienceFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListene
     private fun setRecyclerView() {
         progressBar.visibility = View.VISIBLE
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByCategory("Science")
+        viewModel.newsByRegion("Middle East")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewScience.adapter = adapter
-            inShotsRecyclerViewScience.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewMiddle.adapter = adapter
+            inShotsRecyclerViewMiddle.layoutManager = LinearLayoutManager(context)
             progressBar.visibility = View.GONE
-            youTubePlayerView.visibility = View.VISIBLE
+
 
             val layoutAnimationController: LayoutAnimationController =
                 AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewScience.layoutAnimation = layoutAnimationController
+            inShotsRecyclerViewMiddle.layoutAnimation = layoutAnimationController
 
             adapter.notifyDataSetChanged()
-            inShotsRecyclerViewScience.scheduleLayoutAnimation()
+            inShotsRecyclerViewMiddle.scheduleLayoutAnimation()
 
         })
     }

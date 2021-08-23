@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.ui.fragments
+package com.buildweek.bbc.clone.ui.fragments.category
 
 import android.content.Intent
 import android.os.Bundle

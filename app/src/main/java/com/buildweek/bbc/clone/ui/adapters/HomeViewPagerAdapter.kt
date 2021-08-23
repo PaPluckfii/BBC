@@ -3,6 +3,7 @@ package com.buildweek.bbc.clone.ui.adapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.buildweek.bbc.clone.ui.fragments.*
+import com.buildweek.bbc.clone.ui.fragments.home.*
 
 class HomeViewPagerAdapter(fm: WorldFragment) : FragmentStateAdapter(fm) {
     override fun getItemCount(): Int {

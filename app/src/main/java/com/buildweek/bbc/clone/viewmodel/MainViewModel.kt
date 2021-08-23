@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.buildweek.bbc.BuildConfig
 import com.buildweek.bbc.clone.data.remote.model.opensourceapi.OpenSourceResponse
 import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNews
 import com.buildweek.bbc.clone.repository.MainRepository
@@ -22,21 +23,27 @@ class MainViewModel @Inject constructor(
 
     private val _newsList : MutableLiveData<Resource<OpenSourceResponse>> = MutableLiveData()
     private var newsListResponse : OpenSourceResponse? = null
-    private var currentPage : Int = 1
+    var currentPage : Int = 1
     val newsList : LiveData<Resource<OpenSourceResponse>> = _newsList
 
     /**
      * Function to get results from api
      */
-    fun getAllNews() {
+    fun getAllNews(
+        country : String,
+        category : String,
+        source : String,
+        keyword : String
+    ) {
         viewModelScope.launch(Dispatchers.IO) {
             _newsList.postValue(Resource.Loading())
             val response = repository.getNewsFromOpenApi(
-                "",
-                "",
-                "",
-                "world",
-                "020685a3862d47c383cf4a4506d5f303"                      //TODO pass api key
+                country,
+                category,
+                source,
+                keyword,
+                BuildConfig.OPEN_SOURCE_API_KEY,
+                currentPage++
             )
             _newsList.postValue(handleApiResponse(response))
         }

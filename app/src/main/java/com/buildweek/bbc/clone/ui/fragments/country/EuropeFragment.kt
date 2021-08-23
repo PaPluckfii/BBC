@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.ui.fragments
+package com.buildweek.bbc.clone.ui.fragments.country
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,9 +19,10 @@ import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.android.synthetic.main.fragment_asia.*
+import kotlinx.android.synthetic.main.fragment_europe.*
 
-class AsiaFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
+
+class EuropeFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
 
     lateinit var viewModel: MainViewModel
     lateinit var adapter: LocalServerRecyclerAdapter
@@ -35,15 +36,15 @@ class AsiaFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_asia, container, false)
+        val root = inflater.inflate(R.layout.fragment_europe, container, false)
 
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.asiaSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.asiaProgressBar)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.europeFragmentSwipeRefreshLayout)
+        progressBar = view.findViewById<ProgressBar>(R.id.europeFragmentProgressBar)
         youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtubePlayer1)
 
         setRecyclerView()
@@ -57,20 +58,20 @@ class AsiaFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
     private fun setRecyclerView() {
         progressBar.visibility = View.VISIBLE
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByRegion("Asia")
+        viewModel.newsByRegion("Europe")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewAsia.adapter = adapter
-            inShotsRecyclerViewAsia.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewEurope.adapter = adapter
+            inShotsRecyclerViewEurope.layoutManager = LinearLayoutManager(context)
             progressBar.visibility = View.GONE
             youTubePlayerView.visibility = View.VISIBLE
 
             val layoutAnimationController: LayoutAnimationController =
                 AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewAsia.layoutAnimation = layoutAnimationController
+            inShotsRecyclerViewEurope.layoutAnimation = layoutAnimationController
 
             adapter.notifyDataSetChanged()
-            inShotsRecyclerViewAsia.scheduleLayoutAnimation()
+            inShotsRecyclerViewEurope.scheduleLayoutAnimation()
 
         })
     }

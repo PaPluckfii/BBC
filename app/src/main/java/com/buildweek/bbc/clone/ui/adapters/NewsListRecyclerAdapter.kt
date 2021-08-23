@@ -1,6 +1,5 @@
 package com.buildweek.bbc.clone.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,19 +9,26 @@ import com.buildweek.bbc.clone.data.remote.model.opensourceapi.Article
 import com.buildweek.bbc.databinding.NewsItemLayoutBinding
 import com.bumptech.glide.Glide
 
-class NewsListRecyclerAdapter() : RecyclerView.Adapter<NewsListRecyclerAdapter.NewsListViewHolder>() {
+class NewsListRecyclerAdapter(
+    private val listener: NewsItemClickListener
+    ) : RecyclerView.Adapter<NewsListRecyclerAdapter.NewsListViewHolder>() {
 
     inner class NewsListViewHolder(
         private val binding : NewsItemLayoutBinding
         ) : RecyclerView.ViewHolder(binding.root) {
 
         fun setData(article: Article) {
-            binding.inShotsNewsHeadline.text = article.title
-            binding.inShotsNewsLocation.text = article.author
-            binding.inShotsNewsUploadedAt.text = article.publishedAt
             Glide.with(binding.root).load(article.urlToImage).into(binding.inShotsNewsImage)
-        }
+            binding.apply {
+                inShotsNewsHeadline.text = article.title
+                inShotsNewsLocation.text = article.author
+                inShotsNewsUploadedAt.text = article.publishedAt
+                root.setOnClickListener {
+                    listener.onNewsItemClicked(article)
+                }
+            }
 
+        }
     }
 
     /**

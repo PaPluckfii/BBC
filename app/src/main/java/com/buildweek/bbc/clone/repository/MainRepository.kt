@@ -23,7 +23,8 @@ class MainRepository @Inject constructor(
         category : String,
         source : String,
         keyword : String,
-        apiKey : String
+        apiKey : String,
+        currentPage : Int
     ) : Response<OpenSourceResponse>{
         return openSourceApiService.getOpenSourceNews(
             country,
@@ -32,7 +33,7 @@ class MainRepository @Inject constructor(
             keyword,
             apiKey,
             10,
-            1
+            currentPage
         )
     }
 

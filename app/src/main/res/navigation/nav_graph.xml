@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/topStoriesFragment"
-        android:name="com.buildweek.bbc.clone.ui.fragments.TopStoriesFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.home.TopStoriesFragment"
         android:label="fragment_top_stories"
         tools:layout="@layout/fragment_top_stories" >
         <action

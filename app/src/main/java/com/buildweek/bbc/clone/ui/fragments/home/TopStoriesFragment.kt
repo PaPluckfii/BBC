@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.ui.fragments
+package com.buildweek.bbc.clone.ui.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,49 +12,62 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.data.remote.model.opensourceapi.Article
 import com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity
 import com.buildweek.bbc.clone.ui.adapters.NewsItemClickListener
 import com.buildweek.bbc.clone.ui.adapters.NewsListRecyclerAdapter
 import com.buildweek.bbc.clone.util.Resource
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
-import com.buildweek.bbc.databinding.FragmentNewsArticleBinding
+import com.buildweek.bbc.databinding.FragmentTopStoriesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-abstract class NewsArticleFragment(
-    layoutId : Int
-) : Fragment(layoutId), NewsItemClickListener {
+class TopStoriesFragment : Fragment() , NewsItemClickListener {
 
-    lateinit var binding: FragmentNewsArticleBinding
-    lateinit var newsListAdapter: NewsListRecyclerAdapter
-    val viewModel: MainViewModel by viewModels()
+    private lateinit var binding : FragmentTopStoriesBinding
+    private val viewModel: MainViewModel by viewModels()
+    lateinit var newsListAdapter : NewsListRecyclerAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentTopStoriesBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    companion object {
+        fun newInstance() = TopStoriesFragment()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentNewsArticleBinding.bind(view)
-
+        viewModel.getAllNews(
+            "",
+            "",
+            "",
+            "breaking"
+        )
         setRecyclerView()
         observeLiveData()
         handleListeners()
     }
 
-    fun setRecyclerView() {
+    private fun setRecyclerView() {
 
         newsListAdapter = NewsListRecyclerAdapter(this)
 
-        binding.recyclerView.apply {
+        binding.inShotsRecyclerViewTopStories.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = newsListAdapter
         }
 
     }
 
-    fun observeLiveData() {
+    private fun observeLiveData() {
         viewModel.newsList.observe(viewLifecycleOwner, Observer {
-            when (it) {
+            when(it){
                 is Resource.Loading -> {
                     showProgressBar()
                 }
@@ -64,20 +77,21 @@ abstract class NewsArticleFragment(
                 }
                 is Resource.Error -> {
                     hideProgressBar()
-                    Toast.makeText(context, "Oops something went wrong!", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(context,"Oops something went wrong!",Toast.LENGTH_SHORT).show()
                 }
             }
         })
     }
 
-    abstract fun currentNews()
-
-    fun handleListeners() {
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.currentPage = 1
-            currentNews()
-            binding.swipeRefreshLayout.isRefreshing = false
+    private fun handleListeners(){
+        binding.topNewsSwipeRefreshLayout.setOnRefreshListener {
+            viewModel.getAllNews(
+                "",
+                "",
+                "",
+                "breaking"
+            )
+            binding.topNewsSwipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -94,7 +108,7 @@ abstract class NewsArticleFragment(
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
                 isScrolling = true
             }
         }
@@ -112,26 +126,30 @@ abstract class NewsArticleFragment(
             val isAtLastPage = (firstVisibleItemPosition + visibleItemCount) >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
             val isTotalMoreThanVisible = totalItemCount >= 10
-            val shouldPaginate =
-                isNotLoadingAndNotLastPage && isAtLastPage && isNotAtBeginning &&
-                        isTotalMoreThanVisible && isScrolling
+            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastPage && isNotAtBeginning &&
+                    isTotalMoreThanVisible && isScrolling
 
-            if (shouldPaginate) {
-                currentNews()
+            if(shouldPaginate) {
+                viewModel.getAllNews(
+                    "",
+                    "",
+                    "",
+                    "breaking"
+                )
                 isScrolling = false
             }
         }
     }
 
-    fun showProgressBar() {
-        binding.progressBar.visibility = View.VISIBLE
+    private fun showProgressBar() {
+        binding.topNewsProgressBar.visibility = View.VISIBLE
     }
 
-    fun hideProgressBar() {
-        binding.progressBar.visibility = View.GONE
+    private fun hideProgressBar() {
+        binding.topNewsProgressBar.visibility = View.GONE
     }
 
-    override fun onNewsItemClicked(article: Article) {
+    override fun onNewsItemClicked(article : Article) {
         val intent = Intent(activity, DetailedNewsViewActivity::class.java)
         intent.putExtra("article", article)
         startActivity(intent)

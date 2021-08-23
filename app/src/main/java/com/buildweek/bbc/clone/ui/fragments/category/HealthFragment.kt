@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.ui.fragments
+package com.buildweek.bbc.clone.ui.fragments.category
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,9 +19,9 @@ import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.android.synthetic.main.fragment_us_canada.*
+import kotlinx.android.synthetic.main.fragment_health.*
 
-class UsCanadaFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
+class HealthFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
 
     lateinit var viewModel: MainViewModel
     lateinit var adapter: LocalServerRecyclerAdapter
@@ -35,15 +35,16 @@ class UsCanadaFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListen
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_us_canada, container, false)
+        val root = inflater.inflate(R.layout.fragment_health, container, false)
 
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.usCanadaFragmentSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.usCanadaFragmentProgressBar)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.healthFragmentSwipeRefreshLayout)
+        progressBar = view.findViewById<ProgressBar>(R.id.healthFragmentProgressBar)
+        youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtubePlayer1)
 
         setRecyclerView()
 
@@ -56,19 +57,20 @@ class UsCanadaFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListen
     private fun setRecyclerView() {
         progressBar.visibility = View.VISIBLE
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByRegion("US")
+        viewModel.newsByCategory("Health")
         viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
             adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewUS.adapter = adapter
-            inShotsRecyclerViewUS.layoutManager = LinearLayoutManager(context)
+            inShotsRecyclerViewHealth.adapter = adapter
+            inShotsRecyclerViewHealth.layoutManager = LinearLayoutManager(context)
             progressBar.visibility = View.GONE
+            youTubePlayerView.visibility = View.VISIBLE
 
             val layoutAnimationController: LayoutAnimationController =
                 AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewUS.layoutAnimation = layoutAnimationController
+            inShotsRecyclerViewHealth.layoutAnimation = layoutAnimationController
 
             adapter.notifyDataSetChanged()
-            inShotsRecyclerViewUS.scheduleLayoutAnimation()
+            inShotsRecyclerViewHealth.scheduleLayoutAnimation()
 
         })
     }
