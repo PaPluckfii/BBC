@@ -7,129 +7,129 @@
 
     <fragment
         android:id="@+id/worldFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.WorldFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.WorldFragment"
         android:label="fragment_world"
         tools:layout="@layout/fragment_world" />
     <fragment
         android:id="@+id/africaFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.AfricaFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.AfricaFragment"
         android:label="fragment_africa"
         tools:layout="@layout/fragment_africa" />
     <fragment
         android:id="@+id/asiaFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.AsiaFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.AsiaFragment"
         android:label="fragment_asia"
         tools:layout="@layout/fragment_asia" />
     <fragment
         android:id="@+id/australiaFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.AustraliaFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.AustraliaFragment"
         android:label="fragment_australia"
         tools:layout="@layout/fragment_australia" />
     <fragment
         android:id="@+id/europeFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.EuropeFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.EuropeFragment"
         android:label="fragment_europe"
         tools:layout="@layout/fragment_europe" />
     <fragment
         android:id="@+id/middleEastFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.MiddleEastFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.MiddleEastFragment"
 
         android:label="fragment_middle_east"
         tools:layout="@layout/fragment_middle_east" />
     <fragment
         android:id="@+id/latinAmericaFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.LatinAmericaFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.LatinAmericaFragment"
         android:label="fragment_latin_america"
         tools:layout="@layout/fragment_latin_america" />
     <fragment
         android:id="@+id/ukFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.UkFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.UkFragment"
         android:label="fragment_uk"
         tools:layout="@layout/fragment_uk" />
 
     <fragment
         android:id="@+id/paradisePapersFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.ParadisePapersFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.ParadisePapersFragment"
         android:label="fragment_paradise_papers"
         tools:layout="@layout/fragment_paradise_papers" />
     <fragment
         android:id="@+id/businessFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.BusinessFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.BusinessFragment"
         android:label="fragment_business"
         tools:layout="@layout/fragment_business" />
     <fragment
         android:id="@+id/techFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.TechFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.TechFragment"
         android:label="fragment_tech"
         tools:layout="@layout/fragment_tech" />
     <fragment
         android:id="@+id/scienceFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.ScienceFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.ScienceFragment"
         android:label="fragment_science"
         tools:layout="@layout/fragment_science" />
     <fragment
         android:id="@+id/healthFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.HealthFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.HealthFragment"
         android:label="fragment_health"
         tools:layout="@layout/fragment_health" />
     <fragment
         android:id="@+id/entertainmentFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.EntertainmentFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.EntertainmentFragment"
         android:label="fragment_entertainment"
         tools:layout="@layout/fragment_entertainment" />
     <fragment
         android:id="@+id/storiesFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.StoriesFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.StoriesFragment"
         android:label="fragment_stories"
         tools:layout="@layout/fragment_stories" />
     <fragment
         android:id="@+id/sportFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.SportFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.SportFragment"
         android:label="fragment_sport"
         tools:layout="@layout/fragment_sport" />
     <fragment
         android:id="@+id/footballFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.FootballFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.FootballFragment"
         android:label="fragment_football"
         tools:layout="@layout/fragment_football" />
     <fragment
         android:id="@+id/formula1Fragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.Formula1Fragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.Formula1Fragment"
         android:label="fragment_formula1"
         tools:layout="@layout/fragment_formula1" />
     <fragment
         android:id="@+id/cricketFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.CricketFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.CricketFragment"
         android:label="fragment_cricket"
         tools:layout="@layout/fragment_cricket" />
     <fragment
         android:id="@+id/rugbyUnionFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.RugbyUnionFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.RugbyUnionFragment"
         android:label="fragment_rugby_union"
         tools:layout="@layout/fragment_rugby_union" />
     <fragment
         android:id="@+id/tennisFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.TennisFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.TennisFragment"
         android:label="fragment_tennis"
         tools:layout="@layout/fragment_tennis" />
     <fragment
         android:id="@+id/golfFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.GolfFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.GolfFragment"
         android:label="fragment_golf"
         tools:layout="@layout/fragment_golf" />
     <fragment
         android:id="@+id/atheleticsFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.AtheleticsFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.AthleticsFragment"
         android:label="fragment_atheletics"
         tools:layout="@layout/fragment_atheletics" />
     <fragment
         android:id="@+id/cyclingFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.CyclingFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.category.CyclingFragment"
         android:label="fragment_cycling"
         tools:layout="@layout/fragment_cycling" />
     <fragment
         android:id="@+id/usCanadaFragment"
-        android:name="com.buildweek.bbc.view.activities.ui.fragments.UsCanadaFragment"
+        android:name="com.buildweek.bbc.clone.ui.fragments.country.UsCanadaFragment"
         android:label="fragment_us_canada"
         tools:layout="@layout/fragment_us_canada" />
 </navigation>
