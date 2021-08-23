@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.ui.adapters.HomeViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_world.*
 
-
+@AndroidEntryPoint
 class WorldFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,

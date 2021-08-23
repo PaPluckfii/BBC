@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.buildweek.bbc.R
-import com.buildweek.bbc.clone.data.remote.model.LocalServerNewsItem
+import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.bumptech.glide.Glide
 
 class DetailedNewsViewActivity : AppCompatActivity() {

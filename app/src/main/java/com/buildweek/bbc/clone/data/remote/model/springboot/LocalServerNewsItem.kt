@@ -1,4 +1,4 @@
-package com.buildweek.bbc.clone.data.remote.model
+package com.buildweek.bbc.clone.data.remote.model.springboot
 
 import java.io.Serializable
 

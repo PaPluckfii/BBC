@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity
-import com.buildweek.bbc.clone.data.remote.model.LocalServerNewsItem
+import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_my_news.*

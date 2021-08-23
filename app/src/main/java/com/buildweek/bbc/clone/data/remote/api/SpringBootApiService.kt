@@ -1,6 +1,6 @@
 package com.buildweek.bbc.clone.data.remote.api
 
-import com.buildweek.bbc.clone.data.remote.model.LocalServerNews
+import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNews
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

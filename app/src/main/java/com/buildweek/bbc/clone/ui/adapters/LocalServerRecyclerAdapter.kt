@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.buildweek.bbc.R
-import com.buildweek.bbc.clone.data.remote.model.LocalServerNewsItem
+import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.bumptech.glide.Glide
 
 
@@ -24,7 +24,7 @@ class LocalServerRecyclerAdapter(
         parent: ViewGroup,
         viewType: Int
     ): LocalServerRecyclerViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_inshots_layout,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.news_item_layout,parent,false)
         return LocalServerRecyclerViewHolder(view)
     }
 

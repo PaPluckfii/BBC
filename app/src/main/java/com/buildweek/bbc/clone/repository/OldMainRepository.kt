@@ -3,7 +3,7 @@ package com.buildweek.bbc.clone.repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.buildweek.bbc.clone.data.remote.api.RetrofitBuilder
-import com.buildweek.bbc.clone.data.remote.model.LocalServerNews
+import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
