@@ -6,16 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.buildweek.bbc.R
+import com.buildweek.bbc.clone.ui.fragments.NewsArticleFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class ParadisePapersFragment :Fragment(){
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+@AndroidEntryPoint
+class ParadisePapersFragment : NewsArticleFragment(R.layout.fragment_paradise_papers){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        currentNews()
+    }
 
-        val root = inflater.inflate(R.layout.fragment_paradise_papers, container, false)
-
-        return root
+    override fun currentNews() {
+        viewModel.getAllNews(
+            "",
+            "",
+            "",
+            "food"
+        )
     }
 }

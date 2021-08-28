@@ -17,67 +17,26 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity
 import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
+import com.buildweek.bbc.clone.ui.fragments.NewsArticleFragment
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_tech.*
 
-class TechFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
-
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: LocalServerRecyclerAdapter
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    lateinit var progressBar: ProgressBar
-    lateinit var youTubePlayerView: YouTubePlayerView
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val root = inflater.inflate(R.layout.fragment_tech, container, false)
-
-        return root
-    }
+@AndroidEntryPoint
+class TechFragment : NewsArticleFragment(R.layout.fragment_tech){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.techFragmentSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.techFragmentProgressBar)
-        youTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.youtubePlayer1)
-
-        setRecyclerView()
-
-        swipeRefreshLayout.setOnRefreshListener {
-            setRecyclerView()
-            swipeRefreshLayout.isRefreshing = false
-        }
+        currentNews()
     }
 
-    private fun setRecyclerView() {
-        progressBar.visibility = View.VISIBLE
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByCategory("Tech")
-        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewTech.adapter = adapter
-            inShotsRecyclerViewTech.layoutManager = LinearLayoutManager(context)
-            progressBar.visibility = View.GONE
-            youTubePlayerView.visibility = View.VISIBLE
-
-            val layoutAnimationController: LayoutAnimationController =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewTech.layoutAnimation = layoutAnimationController
-
-            adapter.notifyDataSetChanged()
-            inShotsRecyclerViewTech.scheduleLayoutAnimation()
-
-        })
-    }
-
-    override fun onItemClicked(article: LocalServerNewsItem) {
-        val intent = Intent(activity, DetailedNewsViewActivity::class.java)
-        intent.putExtra("article", article)
-        startActivity(intent)
+    override fun currentNews() {
+        viewModel.getAllNews(
+            "",
+            "",
+            "",
+            "technology"
+        )
     }
 }

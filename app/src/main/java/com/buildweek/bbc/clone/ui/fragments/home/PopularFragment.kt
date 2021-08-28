@@ -17,67 +17,29 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity
 import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
+import com.buildweek.bbc.clone.ui.fragments.NewsArticleFragment
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_popular.*
 
-
-class PopularFragment : Fragment() , LocalServerRecyclerAdapter.OnItemClickListener{
-
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: LocalServerRecyclerAdapter
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    lateinit var progressBar: ProgressBar
-    lateinit var youTubePlayerView: YouTubePlayerView
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popular, container, false)
-    }
-    companion object {
-        fun newInstance() = PopularFragment()
-    }
-
+@AndroidEntryPoint
+class PopularFragment : NewsArticleFragment(R.layout.fragment_popular){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.popularSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.popularProgressBar)
-
-        setRecyclerView()
-
-        swipeRefreshLayout.setOnRefreshListener {
-            setRecyclerView()
-            swipeRefreshLayout.isRefreshing = false
-        }
+        currentNews()
     }
 
-    private fun setRecyclerView() {
-        progressBar.visibility = View.VISIBLE
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.worldNews()
-        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewPopular.adapter = adapter
-            inShotsRecyclerViewPopular.layoutManager = LinearLayoutManager(context)
-            progressBar.visibility = View.GONE
-
-            val layoutAnimationController: LayoutAnimationController =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewPopular.layoutAnimation = layoutAnimationController
-
-            adapter.notifyDataSetChanged()
-            inShotsRecyclerViewPopular.scheduleLayoutAnimation()
-
-        })
+    override fun currentNews() {
+        viewModel.getAllNews(
+            "",
+            "breaking",
+            "",
+            ""
+        )
     }
 
-    override fun onItemClicked(article: LocalServerNewsItem) {
-        val intent = Intent(activity, DetailedNewsViewActivity::class.java)
-        intent.putExtra("article",article)
-        startActivity(intent)
+    companion object{
+        fun newInstance() = PopularFragment()
     }
-
 }

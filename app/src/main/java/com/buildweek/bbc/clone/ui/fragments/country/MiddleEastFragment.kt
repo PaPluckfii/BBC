@@ -17,66 +17,26 @@ import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity
 import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
+import com.buildweek.bbc.clone.ui.fragments.NewsArticleFragment
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_middle_east.*
 
-class MiddleEastFragment :Fragment(), LocalServerRecyclerAdapter.OnItemClickListener{
-
-    lateinit var viewModel: MainViewModel
-    lateinit var adapter: LocalServerRecyclerAdapter
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    lateinit var progressBar: ProgressBar
-    lateinit var youTubePlayerView: YouTubePlayerView
-
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-
-        val root = inflater.inflate(R.layout.fragment_middle_east, container, false)
-
-        return root
-    }
+@AndroidEntryPoint
+class MiddleEastFragment : NewsArticleFragment(R.layout.fragment_middle_east){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.middleEastFragmentSwipeRefreshLayout)
-        progressBar = view.findViewById<ProgressBar>(R.id.middleEastFragmentProgressBar)
-
-        setRecyclerView()
-
-        swipeRefreshLayout.setOnRefreshListener {
-            setRecyclerView()
-            swipeRefreshLayout.isRefreshing = false
-        }
+        currentNews()
     }
 
-    private fun setRecyclerView() {
-        progressBar.visibility = View.VISIBLE
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.newsByRegion("Middle East")
-        viewModel.getLocalServerNews().observe(viewLifecycleOwner, Observer {
-            adapter = context?.let { it1 -> LocalServerRecyclerAdapter(it1, it, this) }!!
-            inShotsRecyclerViewMiddle.adapter = adapter
-            inShotsRecyclerViewMiddle.layoutManager = LinearLayoutManager(context)
-            progressBar.visibility = View.GONE
-
-
-            val layoutAnimationController: LayoutAnimationController =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-            inShotsRecyclerViewMiddle.layoutAnimation = layoutAnimationController
-
-            adapter.notifyDataSetChanged()
-            inShotsRecyclerViewMiddle.scheduleLayoutAnimation()
-
-        })
-    }
-
-    override fun onItemClicked(article: LocalServerNewsItem) {
-        val intent = Intent(activity, DetailedNewsViewActivity::class.java)
-        intent.putExtra("article", article)
-        startActivity(intent)
+    override fun currentNews() {
+        viewModel.getAllNews(
+            "",
+            "",
+            "",
+            "middle east"
+        )
     }
 }

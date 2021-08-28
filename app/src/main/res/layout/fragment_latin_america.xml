@@ -5,25 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".clone.ui.fragments.country.LatinAmericaFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/latinAmericaFragmentSwipeRefreshLayout">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/inShotsRecyclerViewLatin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"/>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <ProgressBar
-        android:id="@+id/latinAmericaFragmentProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:indeterminateDrawable="@drawable/progress_bar_red"
-        android:layout_centerInParent="true"/>
+    <include
+        layout="@layout/fragment_news_article"/>
 
 </RelativeLayout>

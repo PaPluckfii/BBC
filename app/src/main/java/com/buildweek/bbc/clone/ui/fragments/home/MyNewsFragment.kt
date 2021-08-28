@@ -22,9 +22,10 @@ import com.buildweek.bbc.clone.ui.activities.DetailedNewsViewActivity
 import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_my_news.*
 
-
+@AndroidEntryPoint
 class MyNewsFragment : Fragment(), LocalServerRecyclerAdapter.OnItemClickListener {
 
     lateinit var viewModel: MainViewModel

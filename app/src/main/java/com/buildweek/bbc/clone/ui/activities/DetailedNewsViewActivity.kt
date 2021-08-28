@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.buildweek.bbc.R
+import com.buildweek.bbc.clone.data.remote.model.opensourceapi.Article
 import com.buildweek.bbc.clone.data.remote.model.springboot.LocalServerNewsItem
 import com.bumptech.glide.Glide
 
 class DetailedNewsViewActivity : AppCompatActivity() {
 
-    lateinit var article : LocalServerNewsItem
+    lateinit var article : Article
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_news_view)
-        article = intent.getSerializableExtra("article") as LocalServerNewsItem
+        article = intent.getSerializableExtra("article") as Article
 
         val heading = findViewById<TextView>(R.id.tvNewsHeadline)
         val subHeading = findViewById<TextView>(R.id.tvNewsSubHeadline)
@@ -29,16 +30,12 @@ class DetailedNewsViewActivity : AppCompatActivity() {
 
         val type = Typeface.createFromAsset(assets,"sanitrixiesans.ttf")
 
-        heading.text = article.mainheading
-        subHeading.text = article.subheading1
+        heading.text = article.title
+        subHeading.text = article.description
         author.text = article.author
-        location.text = article.region
-        date.text = article.dateofnews
+        date.text = article.publishedAt
         content.text = article.content
-        Glide.with(this).load(article.image1).into(image1)
-        if (article.image2 != null){
-            Glide.with(this).load(article.image2).into(image2)
-        }
+        Glide.with(this).load(article.urlToImage).into(image1)
 
         heading.typeface = type
         subHeading.typeface = type
