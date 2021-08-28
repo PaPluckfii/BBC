@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.buildweek.bbc.R
 import com.buildweek.bbc.clone.ui.adapters.NewsListRecyclerAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class VideoFragment : Fragment() {
 
     lateinit var adapter : NewsListRecyclerAdapter

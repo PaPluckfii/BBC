@@ -6,70 +6,70 @@
     android:layout_margin="@dimen/dp_3"
     app:cardElevation="@dimen/dp_10">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_150"
         android:layout_margin="@dimen/dp_2">
 
         <ImageView
             android:id="@+id/inShotsNewsImage"
-            android:layout_width="@dimen/dp_150"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            app:layout_constraintDimensionRatio="1:1"
             android:layout_margin="@dimen/dp_5"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/inShotsNewsHeadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/dp_2"
+            android:layout_weight="1"
+            android:text="This is heading"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/inShotsNewsImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/inShotsNewsImage"
+            app:layout_constraintTop_toBottomOf="@+id/inShotsNewsHeadline">
 
             <TextView
-                android:id="@+id/inShotsNewsHeadline"
+                android:id="@+id/inShotsNewsUploadedAt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_2"
-                android:layout_weight="1"
-                android:text="This is heading"
-                android:textColor="@color/black"
+                android:text="8hr"
+                android:textSize="@dimen/sp_20" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_2"
+                android:text="|"
+                android:textSize="@dimen/sp_20" />
+
+            <TextView
+                android:id="@+id/inShotsNewsLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_2"
+                android:textColor="@color/theme_red"
                 android:textSize="@dimen/sp_20"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="@dimen/dp_30">
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/inShotsNewsUploadedAt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_2"
-                    android:text="8hr"
-                    android:textSize="@dimen/sp_20" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_2"
-                    android:text="|"
-                    android:textSize="@dimen/sp_20" />
-
-                <TextView
-                    android:id="@+id/inShotsNewsLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_2"
-                    android:textColor="@color/theme_red"
-                    android:textSize="@dimen/sp_20"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>

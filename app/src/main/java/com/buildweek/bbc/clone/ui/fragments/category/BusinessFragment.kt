@@ -20,8 +20,10 @@ import com.buildweek.bbc.clone.ui.adapters.LocalServerRecyclerAdapter
 import com.buildweek.bbc.clone.ui.fragments.NewsArticleFragment
 import com.buildweek.bbc.clone.viewmodel.MainViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_business.*
 
+@AndroidEntryPoint
 class BusinessFragment : NewsArticleFragment(R.layout.fragment_business) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

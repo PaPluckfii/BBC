@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="This is heading"
+            tools:text="This is heading"
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="@dimen/sp_30"/>
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="By Author"
+            tools:text="By Author"
             android:layout_weight="1"
             android:textSize="@dimen/sp_20"/>
 
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="28/10/1996"
+                tools:text="28/10/1996"
                 android:layout_weight="1"
                 android:textSize="@dimen/sp_20"/>
 
@@ -61,7 +61,7 @@
                 android:paddingStart="@dimen/dp_10"
                 android:paddingEnd="@dimen/dp_10"
                 android:textColor="@color/black"
-                android:text="|"
+                tools:text="|"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:textSize="@dimen/sp_20"/>
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="This is heading"
+            tools:text="This is heading"
             android:textStyle="bold"
             android:layout_weight="1"
             android:textSize="@dimen/sp_20"/>
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Content"
+            tools:text="Content"
             android:layout_weight="1"
             android:textSize="@dimen/sp_20"/>
 
